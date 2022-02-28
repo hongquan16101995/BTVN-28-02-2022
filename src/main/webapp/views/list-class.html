@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style th:replace="/layout :: css"></style>
+</head>
+<body>
+<h1>List Classroom</h1>
+<table id="products">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    <tr th:each="c : ${classes}">
+        <td th:text="${c.getId()}"></td>
+        <td><a th:href="@{/student/class/{id}(id=${c.getId()})}" th:text="${c.getName()}"></a></td>
+    </tr>
+</table>
+<a th:href="@{/student}">Back to home</a>
+<footer th:replace="/layout::footer"></footer>
+</body>
+</html>

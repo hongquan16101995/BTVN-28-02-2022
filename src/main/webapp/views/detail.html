@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style th:replace="/layout :: css"></style>
+</head>
+<body>
+<h1>Student Detail</h1>
+<h2>Name: <span th:text="${student.getName()}"></span></h2>
+<h2>Age: <span th:text="${student.getAge()}"></span></h2>
+<h2>Phone: <span th:text="${student.getPhone()}"></span></h2>
+<h2>Address: <span th:text="${student.getAddress()}"></span></h2>
+<h2>Avg: <span th:text="${student.getAvg()}"></span></h2>
+<h2>Classroom: <span th:text="${student.getClassroom().getName()}"></span></h2>
+<footer th:replace="/layout::footer"></footer>
+</body>
+</html>
