@@ -14,7 +14,7 @@
     </tr>
     <tr th:each="c : ${classes}">
         <td th:text="${c.getId()}"></td>
-        <td><a th:href="@{/student/class/{id}(id=${c.getId()})}" th:text="${c.getName()}"></a></td>
+        <td><a th:href="@{/classroom/student-in(class_id=${c.getId()})}" th:text="${c.getName()}"></a></td>
     </tr>
 </table>
 <a th:href="@{/student}">Back to home</a>

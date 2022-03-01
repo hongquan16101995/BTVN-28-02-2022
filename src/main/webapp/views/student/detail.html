@@ -13,6 +13,7 @@
 <h2>Address: <span th:text="${student.getAddress()}"></span></h2>
 <h2>Avg: <span th:text="${student.getAvg()}"></span></h2>
 <h2>Classroom: <span th:text="${student.getClassroom().getName()}"></span></h2>
+<a th:href="@{/student}">Back to home</a>
 <footer th:replace="/layout::footer"></footer>
 </body>
 </html>

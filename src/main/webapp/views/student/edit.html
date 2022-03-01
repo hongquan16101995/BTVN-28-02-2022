@@ -6,8 +6,8 @@
     <style th:replace="/layout :: css"></style>
 </head>
 <body>
-<h1>Create New Student</h1>
-<form id="form" th:action="@{/student/create}" method="post" th:object="${student}">
+<h1>Edit Student</h1>
+<form id="form" th:action="@{/student/edit/{id}(id=${student.getId()})}" method="post" th:object="${student}">
     <label>Name:
         <input type="text" th:field="*{name}" required>
         <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
@@ -20,8 +20,8 @@
         <input type="text" th:field="*{phone}" required>
         <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
     </label>
-    <label>Address:
-        <textarea th:field="*{address}" required></textarea><br>
+    <label><span style="vertical-align: top">Address:</span>
+        <textarea cols="55" rows="7" th:field="*{address}" required></textarea><br>
     </label>
     <label>Avg:
         <input type="text" th:field="*{avg}" required>
@@ -29,11 +29,12 @@
     </label>
     <label>Classroom:
         <select th:field="*{classroom}">
-            <option th:each="c : ${classes}" th:value="${c.getId()}" th:text="${c.getName()}"></option>
+            <option th:each="c : ${classes}" th:value="${c.getId()()}" th:text="${c.getName()()}"></option>
         </select>
     </label>
     <button type="submit">Create</button>
 </form>
+<a th:href="@{/student}">Back to home</a>
 <footer th:replace="/layout::footer"></footer>
 </body>
 </html>

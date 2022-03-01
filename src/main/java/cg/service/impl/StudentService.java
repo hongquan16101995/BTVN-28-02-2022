@@ -37,17 +37,13 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public Page<Student> findByClassroom(Pageable pageable, Classroom classroom) {
+    public Page<Student> findAllByClassroom(Pageable pageable, Classroom classroom) {
         return iStudentRepository.findAllByClassroom(pageable, classroom);
     }
 
     @Override
-    public Page<Student> findByNameOrPhone(Pageable pageable, String search) {
-        return iStudentRepository.findAllByNameContainingOrPhoneContaining(pageable, search, search);
-    }
-
-    @Override
-    public Page<Student> findByAvgBetween(Pageable pageable, double min, double max) {
-        return iStudentRepository.findAllByAvgBetween(pageable, min, max);
+    public Page<Student> findByAvgBetweenAndNameOrAvgBetweenAndPhone(Pageable pageable, String search, double min, double max) {
+        return iStudentRepository.findAllByAvgBetweenAndNameContainingOrAvgBetweenAndPhoneContaining(
+                pageable, min, max, search, min, max, search);
     }
 }

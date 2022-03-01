@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface IStudentRepository extends PagingAndSortingRepository<Student, Long> {
     Page<Student> findAllByClassroom(Pageable pageable, Classroom classroom);
 
-    Page<Student> findAllByNameContainingOrPhoneContaining(Pageable pageable, String name, String phone);
-
-    Page<Student> findAllByAvgBetween(Pageable pageable, double mix, double max);
+    Page<Student> findAllByAvgBetweenAndNameContainingOrAvgBetweenAndPhoneContaining(
+            Pageable pageable, double min, double max, String name, double min1, double max1, String phone);
 }

@@ -6,22 +6,24 @@
     <style th:replace="/layout :: css"></style>
 </head>
 <body>
-<h1>List Student</h1>
-<a th:href="@{/student/create}">Create new student</a><br>
-<a th:href="@{/student/class}">List Classroom</a>
+<h1><a style="text-decoration: none" type="button" th:href="@{/student}"><span style="color: white">List Student</span></a></h1>
+<button><a th:href="@{/student/create}">Create new student</a></button><br><br>
+<button><a type="button" th:href="@{/classroom}">List Classroom</a></button><br><br>
+
 <form th:action="@{/student}" method="get">
     <label>Search By Name Or Phone:
         <input type="text" name="search" th:value="${search}">
     </label>
+    <label>Search By Avg Between:<br><br>
+        <label> Min:
+            <input type="text" name="min" th:value="${min}">
+        </label>
+        <label> Max:
+            <input type="text" name="max" th:value="${max}">
+        </label>
+    </label><br><br>
     <button type="submit">Search</button>
-</form>
-<form th:action="@{/student/avg}" method="post">
-    <label>Search By Avg Between:<br>
-        <input type="number" name="min" th:value="${min}">
-        <input type="number" name="max" th:value="${max}">
-    </label><br>
-    <button type="submit">Search</button>
-</form>
+</form><br>
 
 <table id="products">
     <tr>
@@ -42,7 +44,8 @@
         <td th:text="${s.getAddress()}"></td>
         <td th:text="${s.getAvg()}"></td>
         <td>
-            <a th:text="${s.getClassroom().getName()}" th:href="@{/student/class/{id}(id=${s.getClassroom().getId()})}"></a>
+            <a th:text="${s.getClassroom().getName()}"
+               th:href="@{/classroom/student-in(class_id=${s.getClassroom().getId()})}"></a>
         </td>
         <td><a th:href="@{/student/edit/{id}(id=${s.getId()})}">Edit</a></td>
         <td><a th:href="@{/student/delete/{id}(id=${s.getId()})}"
@@ -50,11 +53,12 @@
         <td><a th:href="@{/student/view/{id}(id=${s.getId()})}">View</a></td>
     </tr>
 </table>
+<br>
 <div>
-    <a th:href="@{/student(page=${students.number - 1},search=${search})}"
+    <a th:href="@{/student(page=${students.number - 1},search=${search},min=${min},max=${max})}"
        th:if="${students.hasPrevious()}"><span>Previous</span></a>
     <span th:text="${students.number + 1} + '/' + ${students.totalPages}"></span>
-    <a th:href="@{/student(page=${students.number + 1},search=${search})}"
+    <a th:href="@{/student(page=${students.number + 1},search=${search},min=${min},max=${max})}"
        th:if="${students.hasNext()}"><span>Next</span></a>
 </div>
 <footer th:replace="/layout::footer"></footer>

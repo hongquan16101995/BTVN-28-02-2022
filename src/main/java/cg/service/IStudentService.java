@@ -16,9 +16,7 @@ public interface IStudentService {
 
     Optional<Student> findById(Long id);
 
-    Page<Student> findByClassroom(Pageable pageable, Classroom classroom);
+    Page<Student> findAllByClassroom(Pageable pageable, Classroom classroom);
 
-    Page<Student> findByNameOrPhone(Pageable pageable, String search);
-
-    Page<Student> findByAvgBetween(Pageable pageable, double min, double max);
+    Page<Student> findByAvgBetweenAndNameOrAvgBetweenAndPhone(Pageable pageable, String search, double min, double max);
 }
